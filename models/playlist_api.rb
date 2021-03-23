@@ -4,13 +4,21 @@ class PlaylistAPI
   attr_accessor :offset
 
   def initialize(playlist_id)    
-    client_id = ENV["SPOTIFY_ID"]
-    client_secret = ENV["SPOTIFY_SECRET"]
-    client_token = Base64.strict_encode64(client_id + ":" + client_secret)
-    spotify_token = RestClient.post("https://accounts.spotify.com/api/token",{"grant_type": "client_credentials"}, {"Authorization": "Basic #{client_token}"})
-    @parsed_token = JSON.parse(spotify_token)
+    @client_id ||= ENV["SPOTIFY_ID"]
+    @client_secret ||= ENV["SPOTIFY_SECRET"]
     @playlist_id = playlist_id
     @offset = 0
+  end
+
+  def authorize(client_id, client_secret)
+    @client_id = client_id
+    @client_secret = client_secret
+  end
+
+  def get_token
+    client_token = Base64.strict_encode64(@client_id + ":" + @client_secret)
+    spotify_token = RestClient.post("https://accounts.spotify.com/api/token",{"grant_type": "client_credentials"}, {"Authorization": "Basic #{client_token}"})
+    @parsed_token = JSON.parse(spotify_token)
   end
 
   def request_songs
@@ -19,6 +27,7 @@ class PlaylistAPI
   end
 
   def request_all_songs
+    get_token
     songs = request_songs
     while songs.size > 0
       @offset += 100
