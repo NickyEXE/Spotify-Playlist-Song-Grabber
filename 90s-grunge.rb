@@ -1,11 +1,5 @@
-require 'pry'
-require 'dotenv'
-require 'base64'
-require 'rest-client'
-require 'json'
-require_relative 'models/song.rb'
-require_relative 'models/playlist_api.rb'
-Dotenv.load
+require_relative './environment/initialize.rb'
+
 
 # client_id = ENV["CLIENT_ID"]
 # client_secret = ENV["CLIENT_SECRET"]
@@ -17,6 +11,10 @@ Dotenv.load
 
 # i = 0
 
-PlaylistAPI.new("4fd3F2MdmGuYewrNTxaHDY").request_all_songs
+# PlaylistAPI.new("4fd3F2MdmGuYewrNTxaHDY").request_all_songs
+
+# spotify_token = RestClient.post("https://accounts.spotify.com/api/token",{"grant_type": "client_credentials"}, {"Authorization": "Basic #{client_token}"})
+
+
 
 binding.pry
