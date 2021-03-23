@@ -28,4 +28,8 @@ class Song
         cleaned_title
     end
 
+    def search_name
+        "#{clean_title} - #{artist}"
+    end
+
 end
