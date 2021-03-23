@@ -4,8 +4,8 @@ class PlaylistAPI
     attr_accessor :offset
 
     def initialize(playlist_id)        
-        client_id = ENV["CLIENT_ID"]
-        client_secret = ENV["CLIENT_SECRET"]
+        client_id = ENV["SPOTIFY_ID"]
+        client_secret = ENV["SPOTIFY_SECRET"]
         client_token = Base64.strict_encode64(client_id + ":" + client_secret)
         spotify_token = RestClient.post("https://accounts.spotify.com/api/token",{"grant_type": "client_credentials"}, {"Authorization": "Basic #{client_token}"})
         @parsed_token = JSON.parse(spotify_token)
