@@ -1,21 +1,5 @@
 class Song < ActiveRecord::Base
 
-  # attr_reader :album, :id, :name, :artist
-
-  # @@all = []
-
-  # def initialize(track)
-    # @album = track["album"]["name"]
-    # @id = track["id"]
-    # @name = track["name"]
-    # @artist = track["artists"].first["name"]
-    # @@all << self
-  # end
-
-  # def self.all
-  #   @@all
-  # end
-
   def self.initialize_by_track(track)
     self.create(
       album: track["album"]["name"],
@@ -36,5 +20,22 @@ class Song < ActiveRecord::Base
     cleaned_title = cleaned_title.index("THE ") ? cleaned_title.split("THE ").join("") : cleaned_title
     cleaned_title
   end
+
+  # attr_reader :album, :id, :name, :artist
+
+  # @@all = []
+
+  # def initialize(track)
+    # @album = track["album"]["name"]
+    # @id = track["id"]
+    # @name = track["name"]
+    # @artist = track["artists"].first["name"]
+    # @@all << self
+  # end
+
+  # def self.all
+  #   @@all
+  # end
+
 
 end

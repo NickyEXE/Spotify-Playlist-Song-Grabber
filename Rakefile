@@ -18,7 +18,7 @@ namespace :db do
   end
 
 	namespace :seed do
-		task :songs => :environment do
+		task :grunge_songs => :environment do
 			PlaylistAPI.new("4fd3F2MdmGuYewrNTxaHDY").request_all_songs
 		end
 	end

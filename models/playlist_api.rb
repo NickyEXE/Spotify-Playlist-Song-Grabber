@@ -3,20 +3,21 @@ class PlaylistAPI
   attr_reader :parsed_token, :playlist_id
   attr_accessor :offset
 
+  @@client_id ||= ENV["SPOTIFY_ID"]
+  @@client_secret ||= ENV["SPOTIFY_SECRET"]
+
   def initialize(playlist_id)    
-    @client_id ||= ENV["SPOTIFY_ID"]
-    @client_secret ||= ENV["SPOTIFY_SECRET"]
     @playlist_id = playlist_id
     @offset = 0
   end
 
-  def authorize(client_id, client_secret)
-    @client_id = client_id
-    @client_secret = client_secret
+  def self.authorize(client_id, client_secret)
+    @@client_id = client_id
+    @@client_secret = client_secret
   end
 
   def get_token
-    client_token = Base64.strict_encode64(@client_id + ":" + @client_secret)
+    client_token = Base64.strict_encode64(@@client_id + ":" + @@client_secret)
     spotify_token = RestClient.post("https://accounts.spotify.com/api/token",{"grant_type": "client_credentials"}, {"Authorization": "Basic #{client_token}"})
     @parsed_token = JSON.parse(spotify_token)
   end
