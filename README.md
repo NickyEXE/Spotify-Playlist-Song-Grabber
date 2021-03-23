@@ -2,7 +2,7 @@
 
 This is a basic app to take in the ID of a Spotify Playlist and save all the songs to an Active Record table. As is, it's only a step to building a better app, but I found myself reusing a lot of this code and wanted to abstract it and put it up to GitHub.
 
-This was originally used for a thing I was hacking together late at night, so there's some inconsistencies and things I still want to work on: Setting up a gemfile, making it a gem itself, sticking to one tool for making network requests, making the whole thing less messy, but I gotta keep this repo up somewher.
+This was originally used for a thing I was hacking together late at night, so there's some inconsistencies and things I still want to work on: Making it a gem itself, sticking to one tool for making network requests, making the whole thing less messy, but I gotta keep this repo up somewher.
 
 There are a couple of methods I just included in here and some old bits of commented out code that don't do anything, because this is largely a repository of reusable code for me.
 
@@ -10,7 +10,7 @@ There are a couple of methods I just included in here and some old bits of comme
 
 ## Setting up the gems
 
-Really didn't mean for this to be reusable code, so all the gems are required directly in the environment/initialize.rb file. Feel free to gem install them if you don't have any. Bundler coming soon if I don't forget about this.
+Before you can start this app, run `bundle install` in the console.
 
 ## Authorizing with Spotify's API.
 
