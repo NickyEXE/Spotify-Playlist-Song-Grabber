@@ -37,8 +37,4 @@ class Song < ActiveRecord::Base
     cleaned_title
   end
 
-  def self.get_all_lyrics
-    Song.where(lyrics: nil).each{|song| song.get_lyrics}
-  end
-
 end
